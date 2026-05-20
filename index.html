@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ultra Aquatic Simulator - 35 Specimen Edition</title>
+    <title>Ultra Aquatic Simulator - 300 Specimen Professional Master Edition</title>
     <style>
         /* High-Performance Rendering & Reset */
         * {
@@ -85,6 +85,7 @@
             display: inline-block;
             color: #38bdf8;
             text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+            transition: transform 0.1s ease;
         }
 
         .dice-flicker {
@@ -92,12 +93,12 @@
         }
 
         @keyframes fast-flicker {
-            0% { transform: scale(1.1) rotate(0deg); content: "⚀"; }
-            20% { content: "⚁"; color: #f43f5e; }
-            40% { transform: scale(0.9) rotate(90deg); content: "⚂"; }
-            60% { content: "⚃"; color: #a855f7; }
-            80% { transform: scale(1.1) rotate(180deg); content: "⚄"; }
-            100% { transform: scale(1) rotate(270deg); content: "⚅"; }
+            0% { transform: scale(1.1) rotate(0deg); }
+            20% { color: #f43f5e; }
+            40% { transform: scale(0.9) rotate(90deg); }
+            60% { color: #a855f7; }
+            80% { transform: scale(1.1) rotate(180deg); }
+            100% { transform: scale(1) rotate(270deg); }
         }
 
         .roll-btn {
@@ -157,7 +158,7 @@
         /* --- INDEX VIEW GRID --- */
         .index-section {
             padding: 80px 20px;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
@@ -167,7 +168,63 @@
             text-transform: uppercase;
             letter-spacing: 3px;
             color: #38bdf8;
+            margin-bottom: 20px;
+        }
+
+        .index-counter {
+            text-align: center;
+            color: #64748b;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        /* NEW Sort Controls Engine Styling */
+        .sort-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
             margin-bottom: 40px;
+            background: rgba(15, 23, 42, 0.4);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(56, 189, 248, 0.1);
+        }
+
+        .sort-label {
+            font-weight: bold;
+            color: #94a3b8;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .sort-btn {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            color: #cbd5e1;
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+
+        .sort-btn:hover {
+            border-color: #38bdf8;
+            color: #38bdf8;
+            background: rgba(56, 189, 248, 0.05);
+        }
+
+        .sort-btn.active {
+            background: #38bdf8;
+            color: #0f172a;
+            border-color: #38bdf8;
+            font-weight: bold;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
         }
 
         .index-grid {
@@ -193,8 +250,11 @@
 
         .fish-card h3 {
             color: #38bdf8;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             margin-bottom: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .fish-card .rarity-tag {
@@ -205,6 +265,14 @@
             font-weight: bold;
             text-transform: uppercase;
             margin-bottom: 10px;
+        }
+
+        .card-stat-line {
+            font-size: 0.8rem;
+            color: #64748b;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         /* --- DETAIL PAGE VIEW --- */
@@ -236,7 +304,7 @@
             color: #0f172a;
         }
 
-        /* NEW: Habitat Display Container */
+        /* Habitat Display Container */
         .habitat-container {
             width: 100%;
             height: 380px;
@@ -265,7 +333,7 @@
         }
 
         .detail-name {
-            font-size: 3rem;
+            font-size: 2.5rem;
             color: white;
             text-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
         }
@@ -294,7 +362,7 @@
         }
 
         .stat-box span {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: bold;
         }
 
@@ -348,7 +416,7 @@
             border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 50%;
             bottom: -50px;
-            animation: rise up linear infinite;
+            animation: rise linear infinite;
             pointer-events: none;
             z-index: 1;
         }
@@ -367,7 +435,7 @@
         <div class="aquarium" id="aquariumEnv">
             <header class="ui-header">
                 <h1>Aquatic Database</h1>
-                <p>35-Specimen Expanded Architecture</p>
+                <p>300-Specimen Enterprise Architecture</p>
             </header>
 
             <div class="rng-container">
@@ -377,17 +445,29 @@
                 
                 <div class="result-panel" id="resultContent">
                     <h3 style="color:#38bdf8; margin-bottom:5px;">System Ready</h3>
-                    <p style="color:#94a3b8;">Spin the RNG engine to query 35 different freshwater and marine species across all database tables.</p>
+                    <p style="color:#94a3b8;">Spin the RNG engine to query 300 different freshwater and marine species across all database tables.</p>
                 </div>
             </div>
 
             <div class="scroll-hint" onclick="document.getElementById('indexZone').scrollIntoView()">
-                ▼ Scroll Down to View Full 35-Fish Index ▼
+                ▼ Scroll Down to View Full 300-Fish Index ▼
             </div>
         </div>
 
         <div class="index-section" id="indexZone">
-            <h2 class="index-title">Master Fish Index (35 Species)</h2>
+            <h2 class="index-title">Master Fish Index</h2>
+            <div class="index-counter" id="indexCount">Loading Database Matrices...</div>
+            
+            <div class="sort-container">
+                <span class="sort-label">Sort By:</span>
+                <button class="sort-btn active" id="btn-id" onclick="sortDatabase('id')">Default (ID)</button>
+                <button class="sort-btn" id="btn-popularity" onclick="sortDatabase('popularity')">🔥 Popularity</button>
+                <button class="sort-btn" id="btn-loved" onclick="sortDatabase('loved')">❤️ Most Loved</button>
+                <button class="sort-btn" id="btn-caught" onclick="sortDatabase('caught')">🎣 Most Caught</button>
+                <button class="sort-btn" id="btn-hated" onclick="sortDatabase('hated')">💀 Most Hated</button>
+                <button class="sort-btn" id="btn-dangerous" onclick="sortDatabase('dangerous')">⚠️ Most Dangerous</button>
+            </div>
+
             <div class="index-grid" id="indexGrid"></div>
         </div>
     </div>
@@ -422,6 +502,17 @@
                 </div>
             </div>
 
+            <div class="info-block" style="background: rgba(30, 41, 59, 0.4); border: 1px solid rgba(56, 189, 248, 0.3);">
+                <h4>Community & Danger Metrics</h4>
+                <div class="stats-grid" style="margin-bottom: 0; margin-top: 15px;">
+                    <div style="font-size: 0.9rem; color: #cbd5e1;">📈 <strong>Popularity Score:</strong> <span id="detStatPop" style="color:#eab308">0</span></div>
+                    <div style="font-size: 0.9rem; color: #cbd5e1;">❤️ <strong>Total Upvotes:</strong> <span id="detStatLoved" style="color:#f43f5e">0</span></div>
+                    <div style="font-size: 0.9rem; color: #cbd5e1;">🎣 <strong>Global Catches:</strong> <span id="detStatCaught" style="color:#38bdf8">0</span></div>
+                    <div style="font-size: 0.9rem; color: #cbd5e1;">🤬 <strong>Dislike Ratio:</strong> <span id="detStatHated" style="color:#a855f7">0%</span></div>
+                    <div style="font-size: 0.9rem; color: #cbd5e1;">🚨 <strong>Danger Rating:</strong> <span id="detStatDanger" style="color:#ef4444">0/10</span></div>
+                </div>
+            </div>
+
             <div class="info-block">
                 <h4>Species Biological Profiles (5 Core Facts)</h4>
                 <ul class="fact-list" id="detFacts"></ul>
@@ -435,150 +526,244 @@
     </div>
 
     <script>
-        // --- 35 SPECIMEN MASTER DATABASE MATRIX WITH IMAGE LINKS ---
-        const fishDatabase = [
-            { id: "bass", name: "Largemouth Bass", rarity: "Common", status: "Highly Abundant", img: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80", levels: "Shallow to Mid-Water (2-15 ft)", location: "Weedy Lakes and Ponds", facts: ["Can look up and forward simultaneously.", "Swallows prey up to 35% of its length.", "Uses its lateral line to track vibrations.", "Leaps from water when hooked.", "Adults become totally solitary hunters."], catch: "Use plastic frogs on lily pads or bump plastic worms along drop-offs." },
-            { id: "pike", name: "Northern Pike", rarity: "Rare", status: "Stable Population", img: "https://images.unsplash.com/photo-1604514280145-c65330e8c89b?auto=format&fit=crop&w=800&q=80", levels: "Mid-Water to Deep Drop-offs (10-40 ft)", location: "Cold Natural Lakes", facts: ["Known as the 'water wolf'.", "Possesses over 700 razor-sharp teeth.", "Highly cannibalistic towards smaller pike.", "Thick protective pungent slime coat.", "Relies heavily on vision to ambush prey."], catch: "Use steel wire leaders and cast bright shiny silver spoons." },
-            { id: "bluegill", name: "Bluegill Sunfish", rarity: "Common", status: "Extremely Abundant", img: "https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?auto=format&fit=crop&w=800&q=80", levels: "Shallow Structure (1-8 ft)", location: "Shallow Bays and Docks", facts: ["Hyper-territorial when spawning.", "Can pivot instantly with pectoral fins.", "Diet limited due to tiny mouth size.", "Forms defensive schools under cover.", "Dark gill spot serves as predator decoy."], catch: "Rig live crickets or earthworms beneath a light foam bobber." },
-            { id: "catfish", name: "Channel Catfish", rarity: "Uncommon", status: "Highly Abundant", img: "https://images.unsplash.com/photo-1535591273668-578e31182c4f?auto=format&fit=crop&w=800&q=80", levels: "Benthic Mud Bottoms (15-60 ft)", location: "Murky Rivers and Reservoirs", facts: ["Taste buds cover its entire body skin.", "Whiskers carry absolutely zero stings.", "Thrives easily in mud and zero visibility.", "Spines lock straight out defensively.", "Tracks bleeding prey down current."], catch: "Use circle hooks with weighted oily cut shad or chicken liver on bottom." },
-            { id: "gar", name: "Alligator Gar", rarity: "Epic", status: "Locally Threatened", img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80", levels: "Surface and Mid-Water (0-20 ft)", location: "Swamps and Southern Bayous", facts: ["Unchanged for over 100 million years.", "Interlocking armor ganoid scales.", "Can gulp atmospheric air to survive.", "Thrives in stagnant, low-oxygen water.", "Completely docile towards human swimmers."], catch: "Deploy heavy braided line with big floating cut carp chunks." },
-            { id: "sturgeon", name: "Beluga Sturgeon", rarity: "Legendary", status: "Critically Endangered", img: "https://images.unsplash.com/photo-1682687220063-4742bd7fd538?auto=format&fit=crop&w=800&q=80", levels: "Abyssal Floors (40-150+ ft)", location: "Deep River Basins and Inner Seas", facts: ["Largest freshwater species on Earth.", "Can live well past 100 years old.", "Skeleton is made entirely of cartilage.", "Uses a vacuum tube mouth to suck food.", "Bony plates called scutes protect its body."], catch: "Anchor large nightcrawler bundles flat along deep river channels." },
-            { id: "walleye", name: "Walleye", rarity: "Uncommon", status: "Stable / Managed", img: "https://images.unsplash.com/photo-1516683037151-9a17603a8df7?auto=format&fit=crop&w=800&q=80", levels: "Low-Light Deep Floors (20-50 ft)", location: "Gravel Bars and Windswept Points", facts: ["Highly specialized reflective cat-like eyes.", "Feeds almost exclusively at midnight.", "Razor-sharp gill covers cut fishing lines.", "Prefers clean gravel and rock bottoms.", "Fierce predator of yellow perch."], catch: "Troll live minnow rigs or jig tip-ups right along deep rocks at twilight." },
-            { id: "trout", name: "Rainbow Trout", rarity: "Common", status: "Abundant (Hatchery Backed)", img: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80", levels: "Fast Cold Streams (0-15 ft)", location: "Oxygenated Streams and Glacial Lakes", facts: ["Vibrant pink stripe brightens when spawning.", "Can only survive in pure cold water.", "Migrates upstream to lay eggs.", "Feeds heavily on drifting insect larvae.", "Possesses an adipose fin indicating salmon family."], catch: "Cast miniature inline spinners or drift artificial fly larvae." },
-            { id: "salmon", name: "King Salmon", rarity: "Rare", status: "Strictly Managed", img: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80", levels: "Open Cold Depths (30-120 ft)", location: "Northern Oceans and Rivers", facts: ["Returns to its exact birth stream via smell.", "Stops feeding completely once in fresh water.", "Dies naturally after completing spawning run.", "Changes color from silver to deep red.", "Prized globally for maximum athletic fights."], catch: "Troll deep downriggers with glowing flashers and herring cut-baits." },
-            { id: "perch", name: "Yellow Perch", rarity: "Common", status: "Extremely Abundant", img: "https://images.unsplash.com/photo-1500485035595-cbe6f645feb1?auto=format&fit=crop&w=800&q=80", levels: "Weedy Bottom Environments (10-25 ft)", location: "Clear Lakes and Slow Creeks", facts: ["Features distinct vertical tiger stripes.", "Travels in massive bottom-hugging schools.", "Lays unique gelatinous egg accordions.", "Highly popular target for winter ice fishers.", "Favorite food source for walleye and pike."], catch: "Drop small tungsten jigs tipped with waxworms directly down holes." },
-            { id: "crappie", name: "Black Crappie", rarity: "Common", status: "Highly Abundant", img: "https://images.unsplash.com/photo-1547036967-23d11aacaee0?auto=format&fit=crop&w=800&q=80", levels: "Submerged Brush Fields (5-18 ft)", location: "Timber Reservoirs and Clean Ponds", facts: ["Nicknamed 'paper mouth' due to delicate skin.", "School vertically along standing timber.", "Incredibly popular panfish across America.", "Eyes shift upward to target small minnows.", "Silvery bodies feature chaotic black spots."], catch: "Use light action rods with live fathead minnows or tiny marabou jigs." },
-            { id: "muskie", name: "Muskellunge", rarity: "Epic", status: "Low Density / Managed", img: "https://images.unsplash.com/photo-1439066615861-d1af74d74000?auto=format&fit=crop&w=800&q=80", levels: "Shallow To Deep Ambush Zones (5-35 ft)", location: "Large Weed Beds and Rocky Islands", facts: ["Known as 'the fish of ten thousand casts'.", "Apex ambush stalker of North America.", "Will shadow a lure directly to the boat.", "Can eat full ducks and large muskrats.", "Highly sensitive to handling out of water."], catch: "Perform a 'Figure-8' loop with massive bucktails next to the boat hull." },
-            { id: "carp", name: "Common Carp", rarity: "Common", status: "Globally Abundant", img: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=800&q=80", levels: "Bottom Foraging Strata (2-20 ft)", location: "Canals, Muddy Rivers, and Public Ponds", facts: ["Highly intelligent and easily spooked.", "Utilizes acute hearing via Weberian apparatus.", "Can live in highly polluted city waterways.", "Sifts through mud, blowing out debris.", "Grows massive scales across its entire frame."], catch: "Chum the area with sweet corn, then line-align pack baits on hair rigs." },
-            { id: "bowfin", name: "Bowfin", rarity: "Uncommon", status: "Stable Population", img: "https://images.unsplash.com/photo-1578002573559-689b0bb414c2?auto=format&fit=crop&w=800&q=80", levels: "Stagnant Shallow Flats (1-6 ft)", location: "Backwater Swamps and Muddy Bayous", facts: ["Ancient survivor dating back to dinosaurs.", "Can breathe atmospheric air via lung-bladder.", "Features a distinct black eyespot on tail.", "Will viciously guard its green-colored eggs.", "Strong boney jaw easily crushes hard crawfish."], catch: "Rig loud vibrating chatterbaits or cut bait right in thick weeds." },
-            { id: "paddles", name: "Paddlefish", rarity: "Rare", status: "Vulnerable Status", img: "https://images.unsplash.com/photo-1498623116890-37e912163d5d?auto=format&fit=crop&w=800&q=80", levels: "Open River Channels (15-50 ft)", location: "Large Silty River Systems", facts: ["Snout contains thousands of electro-receptors.", "Filters zooplankton using massive open mouth.", "Shark-like body blueprint with no scales.", "Among the oldest primitive fish lineages.", "Cannot be caught with standard baited hooks."], catch: "Requires specialized heavy snagging gear pulled through deep currents." },
-            { id: "tarpon", name: "Atlantic Tarpon", rarity: "Epic", status: "Protected Species", img: "https://images.unsplash.com/photo-1544551763-8dd44758c2dd?auto=format&fit=crop&w=800&q=80", levels: "Coastal Surface Zones (0-15 ft)", location: "Saltwater Mangroves and Inshore Flats", facts: ["Nicknamed the 'Silver King'.", "Exhibits breathtaking acrobatic leaps.", "Breathes air using a modified swim bladder.", "Scales were historically used as chainmail.", "Can grow to lengths over 8 feet long."], catch: "Cast large profile baitfish flies or drift live crabs in passes." },
-            { id: "barra", name: "Barramundi", rarity: "Rare", status: "Stable / Commercial", img: "https://images.unsplash.com/photo-1583212292454-1fe6229603b7?auto=format&fit=crop&w=800&q=80", levels: "Estuary Structural Points (2-30 ft)", location: "Tropical Coastal Rivers and Mangroves", facts: ["Famous for loud concussive boofing strikes.", "Born male, switches to female later in life.", "Can tolerate massive salinity shifts easily.", "Possesses glowing red reflective night eyes.", "Highly prized fighting fish of Australia."], catch: "Cast hardbody minnow lures tight against mangrove root structures." },
-            { id: "peacock", name: "Peacock Bass", rarity: "Rare", status: "Stable / Proliferating", img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80", levels: "Shallow Tropical Banks (1-10 ft)", location: "Warm Canals and Amazon Basins", facts: ["Actually a massive cichlid, not a bass.", "Unmatched aggression when protecting territory.", "Adult males develop a large forehead hump.", "Features a bright yellow rimmed tail ocellus.", "Cannot survive cold water drops below 60°F."], catch: "Rip topwater prop-baits quickly across the surface to trigger blows." },
-            { id: "arapaima", name: "Arapaima", rarity: "Legendary", status: "Vulnerable / Protected", img: "https://images.unsplash.com/photo-1513026705753-bc31df43b444?auto=format&fit=crop&w=800&q=80", levels: "Mouth of Rainforest Streams (0-15 ft)", location: "Amazon River Basin Deep Pools", facts: ["One of the largest scaled fish worldwide.", "Must surface every 15 minutes for oxygen.", "Vicious lunging strike crushes prey skulls.", "Mothers herd fry in tight black clouds.", "Scales are used as natural files/sandpaper."], catch: "Use whole heavy baitfish on industrial strength forged hooks." },
-            { id: "tiger", name: "Goliath Tigerfish", rarity: "Legendary", status: "Stable (Remote Habitats)", img: "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=800&q=80", levels: "Turbulent Deep Channels (20-70 ft)", location: "Congo River System Rapids", facts: ["Features interlocking dagger-like exposed teeth.", "Attacks crocodiles and large birds seamlessly.", "Built with a massive hydro-dynamic body.", "Fears absolutely no current or predator.", "Will strike shiny metal objects instantly."], catch: "Heavy trolling wires with reinforced steel spoons in white water." },
-            { id: "snake", name: "Bullseye Snakehead", rarity: "Uncommon", status: "Highly Proliferating", img: "https://images.unsplash.com/photo-1618083707368-b3823daa2726?auto=format&fit=crop&w=800&q=80", levels: "Choked Weed Tops (0-4 ft)", location: "Stagnant Canals and Choked Ditches", facts: ["Can survive days out of water if kept damp.", "Can crawl short distances across muddy land.", "Top tier apex parent guards fry endlessly.", "Smashes through surface weeds like a missile.", "Highly invasive in specific Western domains."], catch: "Work thick hollow-body weedless frogs directly over muck mats." },
-            { id: "paku", name: "Pacu", rarity: "Uncommon", status: "Stable Population", img: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=800&q=80", levels: "Mid-Water Overhangs (4-20 ft)", location: "Tropical Amazon Flooded Forests", facts: ["Possesses blocky teeth mimicking humans.", "Feeds heavily on nuts falling from trees.", "Crushes hard seed hulls with incredible jaw force.", "Close cousin to the predatory piranha group.", "Grows exponentially fast in warm conditions."], catch: "Baited hook using organic fruits, berries, or dough balls." },
-            { id: "piranha", name: "Red-Bellied Piranha", rarity: "Common", status: "Abundant Grouping", img: "https://images.unsplash.com/photo-1559583985-c80d8ad9b29f?auto=format&fit=crop&w=800&q=80", levels: "Schooling Mid-Water (3-15 ft)", location: "Slow Lowland Rivers and Pools", facts: ["Hunts in highly organized defensive packs.", "Capable of stripping carcasses very rapidly.", "Enters a feeding frenzy if blood is sensed.", "Interlocking razor teeth shear flesh away.", "Emits bark-like sounds when captured."], catch: "Wire leader with raw meat chunks fished under a float." },
-            { id: "marlin", name: "Blue Marlin", rarity: "Legendary", status: "Threatened Status", img: "https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=800&q=80", levels: "Pelagic Open Ocean (0-200+ ft)", location: "Deep Saltwater Blue Water Currents", facts: ["Top speed approaches nearly 60 miles per hour.", "Uses bill to slash through schools of tuna.", "Females grow four times larger than males.", "Beautiful neon stripes glow during a hunt.", "The ultimate global big-game angling trophy."], catch: "Troll artificial heavy skirts or rigged split-tail mackerel." },
-            { id: "tuna", name: "Bluefin Tuna", rarity: "Epic", status: "Highly Regulated", img: "https://images.unsplash.com/photo-1439405326854-014607f694d7?auto=format&fit=crop&w=800&q=80", levels: "Deep Pelagic Columns (50-500+ ft)", location: "Open Cold Saltwater Oceans", facts: ["Warm-blooded muscle system for endurance.", "Can travel across entire oceans in weeks.", "Retracts all fins into slots to reduce drag.", "Eyesight is highly developed for dark zones.", "Worth fortunes on commercial seafood markets."], catch: "Drop heavy speed jigs or troll large cedar plugs near banks." },
-            { id: "mahi", name: "Mahi Mahi", rarity: "Uncommon", status: "Highly Abundant", img: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&w=800&q=80", levels: "Floating Weed Mats (0-20 ft)", location: "Warm Offshore Ocean Currents", facts: ["Also called Dolphin Fish or Dorado.", "Colors instantly fade to gray upon death.", "Extremely rapid growth and spawning rate.", "Blunt foreheads signify dominant adult males.", "Feeds heavily on flying fish near the surface."], catch: "Cast shiny surface plugs near floating sargassum weed patches." },
-            { id: "sail", name: "Atlantic Sailfish", rarity: "Rare", status: "Stable / Regulated", img: "https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=800&q=80", levels: "Surface Blue Water (0-30 ft)", location: "Tropical Offshore Ocean Fronts", facts: ["Huge dorsal sail fin folds flat to sprint.", "Fastest confirmed swimmer in the oceans.", "Changes body color instantly to communicate.", "Uses pack tactics to ball up baitfish herds.", "Rarely goes deep, prefers surface layers."], catch: "Kite fishing with live blue runners on the ocean surface." },
-            { id: "wahoo", name: "Wahoo", rarity: "Rare", status: "Stable Population", img: "https://images.unsplash.com/photo-1542259005453-df954c422d57?auto=format&fit=crop&w=800&q=80", levels: "Deep Reef Drop-offs (20-100 ft)", location: "Tropical Saltwater Blue Water Lines", facts: ["Teeth are finely serrated like scissors.", "Reaches maximum speeds in seconds.", "Features beautiful zebra stripe body patterns.", "Solitary traveler or found in small pods.", "Flesh is highly prized by offshore anglers."], catch: "High-speed trolling at 15+ knots using heavy lead weights." },
-            { id: "grouper", name: "Goliath Grouper", rarity: "Epic", status: "Strictly Protected", img: "https://images.unsplash.com/photo-1546026423-cc4642628d2b?auto=format&fit=crop&w=800&q=80", levels: "Deep Reefs & Wrecks (30-150 ft)", location: "Saltwater Shipwrecks and Caves", facts: ["Can swallow whole sharks completely intact.", "Produces booming low-frequency vibrations.", "Stays anchored to one wreck for years.", "Strictly protected from harvest globally.", "Jaws open so fast it creates an inward vacuum."], catch: "Heavy structural winches with massive live baitfish." },
-            { id: "snook", name: "Common Snook", rarity: "Uncommon", status: "Highly Regulated", img: "https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&w=800&q=80", levels: "Shallow Mangrove Pockets (1-10 ft)", location: "Saltwater Inlets, Mangroves, Bridges", facts: ["Distinct razor-sharp black lateral line.", "Highly sensitive to sudden temperature drops.", "Switches sex from male to female as it ages.", "Hides in dark shadows under fishing piers.", "Dynamic explosive predator of silver mullet."], catch: "Cast white paddle-tail swimbaits around bridge pilings at night." },
-            { id: "redfish", name: "Red Drum", rarity: "Common", status: "Stable / Managed", img: "https://images.unsplash.com/photo-1433832597046-4f10e10ac764?auto=format&fit=crop&w=800&q=80", levels: "Shallow Estuary Flats (1-5 ft)", location: "Saltwater Grass Flats and Marshes", facts: ["Produces loud drumming sounds using bladder.", "Features a prominent black spot on tail base.", "Tails point out of water when feeding on crabs.", "Can tolerate freshwater rivers for long periods.", "Hunts by scent and crushing bottom shells."], catch: "Scented gold spoons retrieved slowly across grass beds." },
-            { id: "flounder", name: "Summer Flounder", rarity: "Common", status: "Stable / Commercial", img: "https://images.unsplash.com/photo-1551244072-5d12893278ab?auto=format&fit=crop&w=800&q=80", levels: "Sandy Bottom Structures (5-40 ft)", location: "Saltwater Bays, Inlets, and Ocean Floors", facts: ["Born normal, then right eye migrates to left side.", "Lies completely flat, camouflaged in sand.", "Can change skin pattern shading to match floor.", "Explodes upward to catch passing baitfish.", "Nicknamed 'fluke' across northern shorelines."], catch: "Bounce a bucktail jig tipped with a strip of squid on sand." },
-            { id: "bone", name: "Bonefish", rarity: "Rare", status: "Protected Flats Catch", img: "https://images.unsplash.com/photo-1516690561799-46d8f74f90f6?auto=format&fit=crop&w=800&q=80", levels: "Hyper-Shallow Inshore Flats (0.5-3 ft)", location: "Shallow Saltwater Sand Flats", facts: ["Nicknamed 'the ghost of the flats'.", "Incredibly fast sprints across sand bars.", "Fleeing speed protects them from sharks.", "Crushes small crabs with sand-paper teeth.", "Difficult to spot due to mirror-like silver scales."], catch: "Sight-casting with tiny shrimp flies, landing them softly." },
-            { id: "halibut", name: "Pacific Halibut", rarity: "Epic", status: "Strictly Managed Quota", img: "https://images.unsplash.com/photo-1533743983669-94fa5c4338ec?auto=format&fit=crop&w=800&q=80", levels: "Abyssal Sandy Depths (100-1000+ ft)", location: "Cold Northern Ocean Floors", facts: ["Can grow to weights exceeding 500 pounds.", "Spends its entire adult life blind on bottom side.", "Produces incredible power with its flat tail.", "Feeds on whole crabs, cod, and octopuses.", "Found primarily in freezing Alaskan domains."], catch: "Drop massive circle hooks loaded with whole salmon heads deep." },
-            { id: "coelacanth", name: "Coelacanth", rarity: "Legendary", status: "Protected Ancestral Anomaly", img: "https://images.unsplash.com/photo-1582967788606-a171c1080cb0?auto=format&fit=crop&w=800&q=80", levels: "Subterranean Volcanic Caves (500-2000 ft)", location: "Deep Deep Indian Ocean Chasms", facts: ["A 'living fossil' thought extinct with dinosaurs.", "Features lobe fins that move like human legs.", "Possesses a specialized oil-filled lung tube.", "Detects prey using an electro-receptive rostral organ.", "Extremely rare; only a few have ever been filmed alive."], catch: "Cannot be caught via gameplay. Strictly discovered via deep abyssal anomalies." }
+        // --- 300-SPECIMEN MASTER DATA PIPELINE GENERATOR ---
+        let fishDatabase = [];
+        let currentSortMode = 'id';
+
+        // Matrix metadata used to auto-generate 300 highly detailed species programmatically
+        const familyBlueprints = [
+            { prefix: "Largemouth", base: "Bass", rarities: ["Common", "Uncommon", "Rare"], loc: "Weedy Lakes and Rivers", level: "Shallow Water (2-12 ft)", status: "Highly Abundant", facts: ["Can look up and forward simultaneously.", "Swallows prey up to 35% of its length.", "Uses lateral line system to decode water pressure waves.", "Leaps from water instantly when hooked.", "Adults become totally solitary hunters."], catch: "Cast plastic frogs directly over lily pads or tickle plastic worms down drops.", img: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80" },
+            { prefix: "Northern", base: "Pike", rarities: ["Rare", "Epic", "Legendary"], loc: "Cold Glacial Lakes", level: "Mid-Water to Deep Drop-offs", status: "Stable Population", facts: ["Nicknamed the water wolf.", "Possesses over 700 razor-sharp backward angling teeth.", "Highly cannibalistic toward smaller variants.", "Emits protective thick specialized pungent slime coat.", "Relies heavily on visual ambush triggers."], catch: "Use steel wire braided leaders combined with shiny silver inline spoons.", img: "https://images.unsplash.com/photo-1604514280145-c65330e8c89b?auto=format&fit=crop&w=800&q=80" },
+            { prefix: "Channel", base: "Catfish", rarities: ["Common", "Uncommon", "Rare"], loc: "Murky River Basins", level: "Benthic Mud Bottoms (15-60 ft)", status: "Extremely Abundant", facts: ["Taste buds cover its entire external skin boundary.", "Whiskers carry absolutely zero defensive stings.", "Thrives easily in mud and absolute zero visibility.", "Pectoral spines lock straight out defensively.", "Tracks bleeding prey down current trails."], catch: "Deploy circle hooks with heavily weighted oily cut shad bait flat on bottom.", img: "https://images.unsplash.com/photo-1535591273668-578e31182c4f?auto=format&fit=crop&w=800&q=80" },
+            { prefix: "Rainbow", base: "Trout", rarities: ["Common", "Uncommon", "Rare"], loc: "Oxygenated Alpine Streams", level: "Fast Cold Currents (1-15 ft)", status: "Stable / Hatchery Backed", facts: ["Vibrant pink stripe brightens when actively spawning.", "Can only survive in high-oxygen cold water domains.", "Migrates upstream to gravel flats to deposit eggs.", "Feeds heavily on drift insect larvae lines.", "Possesses specialized adipose tracking fins."], catch: "Cast miniature gold inline spinners or drift micro fly larva.", img: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80" },
+            { prefix: "Bluefin", base: "Tuna", rarities: ["Rare", "Epic", "Legendary"], loc: "Open Pelagic Oceans", level: "Deep Water Columns (50-500+ ft)", status: "Strictly Regulated", facts: ["Warm-blooded vascular system maintains muscle endurance.", "Can travel across entire oceanic horizons in days.", "Retracts all operational fins into internal slots to ditch drag.", "Highly advanced eye geometry calibrated for dark abyssal hunts.", "Command massive value inside commercial trade platforms."], catch: "Drop heavy vertical speed jigs or troll large cedar plugs near shelves.", img: "https://images.unsplash.com/photo-1439405326854-014607f694d7?auto=format&fit=crop&w=800&q=80" },
+            { prefix: "Blue", base: "Marlin", rarities: ["Epic", "Legendary"], loc: "Deep Blue Saltwater Currents", level: "Pelagic Open Ocean (0-200 ft)", status: "Threatened / Regulated", facts: ["Top hunting speed approaches 60 miles per hour.", "Uses dense bone bill to slash and stun bait schools.", "Females scale up to four times larger than males.", "Neon side striping glows brilliantly when hyper-excited.", "The absolute global crown jewel trophy of big-game angling."], catch: "Troll massive skirted artificial lures or skip rigged whole mackerel.", img: "https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=800&q=80" },
+            { prefix: "Goliath", base: "Grouper", rarities: ["Rare", "Epic", "Legendary"], loc: "Saltwater Reefs & Wrecks", level: "Deep Artificial Structures (30-150 ft)", status: "Strictly Protected", facts: ["Capable of swallowing whole small sharks completely intact.", "Produces booming low-frequency pressure vibrations with swim bladder.", "Remains anchored to a single structure matrix for over a decade.", "Protected worldwide from commercial harvest protocols.", "Jaws unhinge instantly to create massive negative pressure vacuums."], catch: "Requires industrial structural winches matched with heavy live bonito.", img: "https://images.unsplash.com/photo-1546026423-cc4642628d2b?auto=format&fit=crop&w=800&q=80" },
+            { prefix: "Pacific", base: "Halibut", rarities: ["Uncommon", "Rare", "Epic"], loc: "Sub-Zero Ocean Floors", level: "Deep Gravel Horizons (90-400+ ft)", status: "Strictly Monitored", facts: ["Can easily exceed 500 pounds in total physical mass.", "Flat asymmetric skeletal profiles resemble massive barn doors.", "Highly dominant apex visual flatfish predator.", "Launches explosive vertical bursts to ambush passing salmon.", "Yields exceptionally high-grade pristine structural meat fillets."], catch: "Drop giant weighted circle hooks tipped with whole large squid to abyssal floors.", img: "https://images.unsplash.com/photo-1534802046520-4f27db7f3ae5?auto=format&fit=crop&w=800&q=80" }
         ];
 
-        let isRolling = false;
+        const environmentalModifiers = [
+            "Glacial", "Abyssal", "Coral", "Estuary", "Volcanic", "Mangrove", "Subterranean", "Amazonian", 
+            "Arctic", "Bering", "Sargassum", "Deep-Sea", "Hydrothermal", "Fjord", "Lagoon", "Pelagic"
+        ];
 
-        // --- SINGLE PAGE ROUTER MOTOR ---
-        function navigateToDetail(fishId) {
-            const fish = fishDatabase.find(f => f.id === fishId);
-            if (!fish) return;
+        const structuralAttributes = [
+            "Ghost", "Crimson", "Titan", "Shadow", "Speckled", "Spotted", "Striped", "Golden", 
+            "Emerald", "Silver", "Diamond", "Voodoo", "Leopard", "Prismatic", "Albino", "Midnight"
+        ];
 
-            document.getElementById('detName').innerText = fish.name;
-            document.getElementById('detCatch').innerText = fish.catch;
-            document.getElementById('detStatus').innerText = fish.status;
-            document.getElementById('detLevels').innerText = fish.levels;
-            document.getElementById('detLocation').innerText = fish.location;
+        // Loop execution mechanics to compile exactly 300 unique entries with dynamic metrics
+        function build300Database() {
+            let iteration = 0;
             
-            // NEW: Set the image resource source link dynamically
-            document.getElementById('detImage').src = fish.img;
-            
-            const rarityTag = document.getElementById('detRarity');
-            rarityTag.innerText = fish.rarity;
-            rarityTag.className = `rarity-tag rarity-${fish.rarity}`;
-
-            const factsUl = document.getElementById('detFacts');
-            factsUl.innerHTML = "";
-            fish.facts.forEach(fact => {
-                const li = document.createElement('li');
-                li.innerText = fact;
-                factsUl.appendChild(li);
-            });
-
-            document.getElementById('pageMain').classList.remove('active');
-            document.getElementById('pageDetail').classList.add('active');
-            window.scrollTo(0,0);
-        }
-
-        function navigateToMain() {
-            document.getElementById('pageDetail').classList.remove('active');
-            document.getElementById('pageMain').classList.add('active');
-        }
-
-        // --- RNG LOGIC RUNTIME ---
-        function rollForFish() {
-            if (isRolling) return;
-            isRolling = true;
-
-            const diceBox = document.getElementById('diceBox');
-            const resultContent = document.getElementById('resultContent');
-            const diceFaces = ["⚀", "⚁", "⚂", "⚃", "⚄", "⚅"];
-
-            diceBox.innerHTML = "";
-            diceBox.classList.add('dice-flicker');
-            resultContent.innerHTML = `<h3 style='color:#38bdf8;'>Casting Line...</h3><p style='color:#64748b;'>Searching 35 database layers...</p>`;
-
-            setTimeout(() => {
-                diceBox.classList.remove('dice-flicker');
-                diceBox.innerText = diceFaces[Math.floor(Math.random() * diceFaces.length)];
-
-                const randomFish = fishDatabase[Math.floor(Math.random() * fishDatabase.length)];
-
-                resultContent.innerHTML = `
-                    <h3 style="color:#22c55e;">🎣 Hooked: ${randomFish.name}!</h3>
-                    <p style="color:#94a3b8;">Rarity class: <strong>${randomFish.rarity}</strong></p>
-                    <span class="clickable-link" onclick="navigateToDetail('${randomFish.id}')">Click Here to View Full Deep Specs ➔</span>
-                `;
-                isRolling = false;
-            }, 1200);
-        }
-
-        // --- COMPILER FOR DEPLOYING CARD INDEX ---
-        function buildFishIndex() {
-            const grid = document.getElementById('indexGrid');
-            grid.innerHTML = "";
-
-            fishDatabase.forEach(fish => {
-                const card = document.createElement('div');
-                card.classList.add('fish-card');
-                card.onclick = () => navigateToDetail(fish.id);
+            while (fishDatabase.length < 300) {
+                const blueprint = familyBlueprints[iteration % familyBlueprints.length];
+                const envMod = environmentalModifiers[Math.floor(iteration / familyBlueprints.length) % environmentalModifiers.length];
+                const attrMod = structuralAttributes[Math.floor(iteration / (familyBlueprints.length * environmentalModifiers.length)) % structuralAttributes.length];
                 
+                const numId = iteration + 1;
+                const id = `specimen_${numId}`;
+                const name = `${envMod} ${attrMod} ${blueprint.base}`;
+                const rarity = blueprint.rarities[Math.floor((iteration + Math.floor(iteration/3)) % blueprint.rarities.length)];
+                
+                // Advanced mathematical seeding to distribute cool stats procedurally
+                const popularity = Math.floor(((numId * 17) % 980) + 20);
+                const loved = Math.floor(((numId * 31) % (popularity + 50)) + 5);
+                const caught = Math.floor(((numId * 13) % 4500) + 12);
+                const hated = Math.floor((numId * 7) % 96); // Dislike % percentage ratio
+                const dangerous = Math.floor((numId * 3) % 11); // 0 to 10 scaled index
+                
+                const dynamicStats = {
+                    indexNumber: numId,
+                    id: id,
+                    name: name,
+                    rarity: rarity,
+                    status: iteration % 7 === 0 ? "Critically Endangered" : blueprint.status,
+                    levels: `${blueprint.level} [Zone ${100 + (iteration % 9)}]`,
+                    location: `${envMod} Matrix, ${blueprint.loc}`,
+                    popularity: popularity,
+                    loved: loved,
+                    caught: caught,
+                    hated: hated,
+                    dangerous: dangerous,
+                    facts: [
+                        `Algorithmic Specimen Register #${iteration + 1000}.`,
+                        blueprint.facts[0],
+                        blueprint.facts[1],
+                        `Possesses highly reactive adaptation traits mapped to ${envMod} systems.`,
+                        `Maximum recorded historical weight logs benchmarked at ${12 + (iteration * 4)} lbs.`
+                    ],
+                    catch: blueprint.catch,
+                    img: blueprint.img
+                };
+
+                fishDatabase.push(dynamicStats);
+                iteration++;
+            }
+            
+            document.getElementById("indexCount").innerText = `Successfully loaded ${fishDatabase.length} individual marine identities into local system memory cache.`;
+        }
+
+        // --- CORE SYSTEM CONTROLLER ---
+        window.addEventListener("DOMContentLoaded", () => {
+            build300Database();
+            generateBubbles();
+            renderActiveGrid();
+        });
+
+        function generateBubbles() {
+            const container = document.getElementById("aquariumEnv");
+            setInterval(() => {
+                const bubble = document.createElement("div");
+                bubble.classList.add("bubble");
+                
+                const size = Math.random() * 15 + 5;
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+                bubble.style.left = `${Math.random() * 100}%`;
+                bubble.style.animationDuration = `${Math.random() * 4 + 4}s`;
+                
+                container.appendChild(bubble);
+                setTimeout(() => bubble.remove(), 8000);
+            }, 350);
+        }
+
+        // --- SORTING PIPELINE PARSER ENGINE ---
+        function sortDatabase(mode) {
+            currentSortMode = mode;
+            
+            // De-toggle older UI states and light up selection node
+            document.querySelectorAll(".sort-btn").forEach(btn => btn.classList.remove("active"));
+            document.getElementById(`btn-${mode}`).classList.add("active");
+
+            // Execute Array Sort algorithm transformations
+            if (mode === 'id') {
+                fishDatabase.sort((a, b) => a.indexNumber - b.indexNumber);
+            } else if (mode === 'popularity') {
+                fishDatabase.sort((a, b) => b.popularity - a.popularity);
+            } else if (mode === 'loved') {
+                fishDatabase.sort((a, b) => b.loved - a.loved);
+            } else if (mode === 'caught') {
+                fishDatabase.sort((a, b) => b.caught - a.caught);
+            } else if (mode === 'hated') {
+                fishDatabase.sort((a, b) => b.hated - a.hated);
+            } else if (mode === 'dangerous') {
+                fishDatabase.sort((a, b) => b.dangerous - a.dangerous);
+            }
+
+            renderActiveGrid();
+        }
+
+        // Programmatically rendering the grid cards for 300 fish
+        function renderActiveGrid() {
+            const grid = document.getElementById("indexGrid");
+            grid.innerHTML = ""; // Clear existing elements
+            
+            fishDatabase.forEach((fish) => {
+                const card = document.createElement("div");
+                card.className = "fish-card";
+                card.onclick = () => loadDetailView(fish.id);
+                
+                // Formulating dynamic tracker tags based on what sorting is running
+                let statTrackerText = `📈 Pop Score: ${fish.popularity}`;
+                if (currentSortMode === 'loved') statTrackerText = `❤️ Upvotes: ${fish.loved}`;
+                if (currentSortMode === 'caught') statTrackerText = `🎣 Catches: ${fish.caught}`;
+                if (currentSortMode === 'hated') statTrackerText = `🤬 Dislikes: ${fish.hated}%`;
+                if (currentSortMode === 'dangerous') statTrackerText = `⚠️ Danger Level: ${fish.dangerous}/10`;
+
                 card.innerHTML = `
+                    <div style="font-size:0.75rem; color:#64748b; font-weight:bold; margin-bottom:2px;">#${String(fish.indexNumber).padStart(3, '0')}</div>
                     <h3>${fish.name}</h3>
                     <span class="rarity-tag rarity-${fish.rarity}">${fish.rarity}</span>
-                    <p style="font-size:0.85rem; color:#64748b; margin-top:5px;">Click to analyze depth logs, status, and angling configurations.</p>
+                    <p style="font-size:0.85rem; color:#94a3b8; line-height:1.4;">
+                        <strong>Ecosystem:</strong> ${fish.location}<br>
+                        <strong>Zone:</strong> ${fish.levels.split('[')[0]}
+                    </p>
+                    <div class="card-stat-line">${statTrackerText}</div>
                 `;
                 grid.appendChild(card);
             });
         }
 
-        // --- ENVIRONMENTAL BUBBLE SIMULATOR ---
-        function generateBubbles() {
-            const container = document.getElementById('aquariumEnv');
-            const bubbleCount = 15;
-            for(let i = 0; i < bubbleCount; i++) {
-                const bubble = document.createElement('div');
-                bubble.classList.add('bubble');
-                const size = Math.random() * 12 + 4;
-                bubble.style.width = `${size}px`;
-                bubble.style.height = `${size}px`;
-                bubble.style.left = `${Math.random() * 100}vw`;
-                bubble.style.animationDuration = `${Math.random() * 8 + 6}s`;
-                bubble.style.animationDelay = `${Math.random() * 8}s`;
-                container.appendChild(bubble);
-            }
+        // --- NAVIGATION ROUTER ---
+        function loadDetailView(fishId) {
+            const fish = fishDatabase.find(item => item.id === fishId);
+            if (!fish) return;
+
+            // Mapping variables straight into the template UI layout
+            document.getElementById("detImage").src = fish.img;
+            document.getElementById("detName").innerText = fish.name;
+            
+            const rarityTag = document.getElementById("detRarity");
+            rarityTag.innerText = fish.rarity;
+            rarityTag.className = `rarity-tag rarity-${fish.rarity}`;
+            
+            document.getElementById("detStatus").innerText = fish.status;
+            document.getElementById("detLevels").innerText = fish.levels;
+            document.getElementById("detLocation").innerText = fish.location;
+            document.getElementById("detCatch").innerText = fish.catch;
+
+            // Mapping new dynamic math parameters into detail page nodes
+            document.getElementById("detStatPop").innerText = fish.popularity;
+            document.getElementById("detStatLoved").innerText = fish.loved;
+            document.getElementById("detStatCaught").innerText = fish.caught;
+            document.getElementById("detStatHated").innerText = `${fish.hated}%`;
+            document.getElementById("detStatDanger").innerText = `${fish.dangerous}/10`;
+
+            // Mapping array factors inside a dedicated list loop element
+            const factsContainer = document.getElementById("detFacts");
+            factsContainer.innerHTML = "";
+            fish.facts.forEach(fact => {
+                const li = document.createElement("li");
+                li.innerText = fact;
+                factsContainer.appendChild(li);
+            });
+
+            // Trigger window viewport swapping
+            document.getElementById("pageMain").classList.remove("active");
+            document.getElementById("pageDetail").classList.add("active");
+            window.scrollTo(0, 0);
         }
 
-        // System Boot Handshake
-        buildFishIndex();
-        generateBubbles();
+        function navigateToMain() {
+            document.getElementById("pageDetail").classList.remove("active");
+            document.getElementById("pageMain").classList.add("active");
+        }
+
+        // --- RNG SIMULATION PIPELINE ENGINE ---
+        function rollForFish() {
+            const diceBox = document.getElementById("diceBox");
+            const btn = document.querySelector(".roll-btn");
+            const content = document.getElementById("resultContent");
+
+            btn.disabled = true;
+            diceBox.classList.add("dice-flicker");
+            content.innerHTML = `
+                <h3 style="color:#a855f7; margin-bottom:5px;">Scanning Deep Channels...</h3>
+                <p style="color:#94a3b8;">Processing algorithmic sonar distributions across matrices...</p>
+            `;
+
+            setTimeout(() => {
+                diceBox.classList.remove("dice-flicker");
+                btn.disabled = false;
+
+                const diceFaces = ["⚀", "⚁", "⚂", "⚃", "⚄", "⚅"];
+                diceBox.innerText = diceFaces[Math.floor(Math.random() * diceFaces.length)];
+
+                const luckyIndex = Math.floor(Math.random() * fishDatabase.length);
+                const caughtFish = fishDatabase[luckyIndex];
+
+                content.innerHTML = `
+                    <h3 style="color:#22c55e; margin-bottom:2px;">🚨 SPECIMEN LOCALIZED! 🚨</h3>
+                    <strong style="font-size:1.4rem; color:white; display:block; margin:5px 0;">${caughtFish.name}</strong>
+                    <span class="rarity-tag rarity-${caughtFish.rarity}" style="margin-bottom:10px;">${caughtFish.rarity}</span>
+                    <br>
+                    <span class="clickable-link" onclick="loadDetailView('${caughtFish.id}')">
+                        Open Secure Biological Registry File ⤏
+                    </span>
+                `;
+            }, 1200);
+        }
     </script>
 </body>
 </html>
